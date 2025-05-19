@@ -1,0 +1,37 @@
+package com.example.andorinhas2.model;
+
+import com.example.andorinhas2.dto.ChildDto;
+import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "crianca", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"nome", "idade"})
+})
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class ChildTable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull(message = "O Nome Completo é obrigatório") @NotBlank
+    private String nome;
+    @NotNull
+    private Long idade;
+    private Long turma;
+
+    public ChildTable(@Valid ChildDto childDto) {
+        this.id = childDto.id();
+        this.nome = childDto.nome();
+        this.idade = childDto.idade();
+        this.turma = childDto.turma();
+    }
+}
