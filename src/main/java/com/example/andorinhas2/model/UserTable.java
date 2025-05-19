@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,6 +43,9 @@ public class UserTable implements UserDetails{
         this.senha = userDto.senha();
 
     }
+    @Column(name = "data_admissao")
+    @NotNull
+    private LocalDateTime dataAdmissao;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

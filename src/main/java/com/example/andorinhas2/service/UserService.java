@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,7 +29,12 @@ public class UserService {
         user.setNome(userDto.nome());
         user.setRole(userDto.role());
         user.setSenha(passwordEncoder.encode(userDto.senha()));
+        user.setDataAdmissao(LocalDateTime.now());
         userRepository.save(user);
+    }
+    public UserTable monitoraPorId(Long id){
+        UserTable monitora = userRepository.findByUsuarioId(id);
+        return monitora;
 
     }
 }
