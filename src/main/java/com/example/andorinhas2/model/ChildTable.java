@@ -27,11 +27,22 @@ public class ChildTable {
     @NotNull
     private Long idade;
     private Long turma;
+    @NotNull(message = "Não está chegando o id!")
+    private Integer avatarId;
+    @Column(name = "nome_pai")
+    @NotNull
+    private String nomePai;
+    @Column(name = "telefone_pai")
+    @NotNull
+    private String telefonePai;
 
     public ChildTable(@Valid ChildDto childDto) {
         this.id = childDto.id();
         this.nome = childDto.nome();
         this.idade = childDto.idade();
         this.turma = childDto.turma();
+        this.avatarId = childDto.avatarId();
+        this.nomePai = childDto.nomePai();
+        this.telefonePai = childDto.telefonePai();
     }
 }

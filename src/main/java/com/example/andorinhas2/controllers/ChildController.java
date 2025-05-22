@@ -65,9 +65,9 @@ public class ChildController {
     }
 
 
-    @DeleteMapping("/{id}/{nome}")
-    public ResponseEntity<String> removeCrianca(@PathVariable Long id, @PathVariable String nome) {
-        childRepository.deleteByIdAndNome(id, nome);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> removeCrianca(@PathVariable Long id) {
+        childRepository.deleteById(id);
         return ResponseEntity.ok("Criança removida!");
 
     }

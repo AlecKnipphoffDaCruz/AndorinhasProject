@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ChildRepository extends JpaRepository<ChildTable, Long> {
     @Transactional
-    void deleteByIdAndNome(Long id, String nome);
+    void deleteById(Long id);
 }
