@@ -10,6 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "crianca", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"nome", "idade"})
@@ -25,7 +28,7 @@ public class ChildTable {
     @NotNull(message = "O Nome Completo é obrigatório") @NotBlank
     private String nome;
     @NotNull
-    private Long idade;
+    private LocalDate dataNascimento;
     private Long turma;
     @NotNull(message = "Não está chegando o id!")
     private Integer avatarId;
@@ -39,7 +42,7 @@ public class ChildTable {
     public ChildTable(@Valid ChildDto childDto) {
         this.id = childDto.id();
         this.nome = childDto.nome();
-        this.idade = childDto.idade();
+        this.dataNascimento = childDto.dataNascimento();
         this.turma = childDto.turma();
         this.avatarId = childDto.avatarId();
         this.nomePai = childDto.nomePai();
