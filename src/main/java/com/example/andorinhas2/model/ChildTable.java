@@ -34,6 +34,7 @@ public class ChildTable {
     private Integer avatarId;
     @Column(name = "nome_pai")
     @NotNull
+    @NotBlank
     private String nomePai;
     @Column(name = "telefone_pai")
     @NotNull

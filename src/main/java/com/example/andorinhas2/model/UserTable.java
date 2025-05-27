@@ -1,6 +1,7 @@
 package com.example.andorinhas2.model;
 import com.example.andorinhas2.dto.UserDto;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,11 +26,14 @@ public class UserTable implements UserDetails{
     @Column(name = "usuario_id")
     private Long usuarioId;
     @NotNull
+    @NotBlank
     private String nome;
     @NotNull
     @Column(unique = true)
+    @NotBlank
     private String email;
     @NotNull
+    @NotBlank
     private String senha;
 
     @Enumerated(EnumType.STRING)
