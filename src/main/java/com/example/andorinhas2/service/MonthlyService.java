@@ -6,13 +6,10 @@ import com.example.andorinhas2.model.ERegistration;
 import com.example.andorinhas2.model.MonthlyTable;
 import com.example.andorinhas2.repository.ChildRepository;
 import com.example.andorinhas2.repository.MonthlyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
