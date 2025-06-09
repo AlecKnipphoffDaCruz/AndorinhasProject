@@ -25,7 +25,9 @@ public class ChildTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "O Nome Completo é obrigatório") @NotBlank
+    @NotNull(message = "O Nome Completo é obrigatório")
+    @NotBlank
+    @Column(unique = true)
     private String nome;
     @NotNull
     private LocalDate dataNascimento;

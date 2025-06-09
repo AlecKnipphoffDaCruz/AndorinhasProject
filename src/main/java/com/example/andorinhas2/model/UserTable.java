@@ -27,6 +27,7 @@ public class UserTable implements UserDetails{
     private Long usuarioId;
     @NotNull
     @NotBlank
+    @Column (unique = true)
     private String nome;
     @NotNull
     @Column(unique = true)

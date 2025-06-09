@@ -25,7 +25,7 @@ public class MonthlyService {
             throw new RuntimeException("Nenhuma mensalidade encontrada para essa criança");
         }
 
-        return mensalidades.get(0); // ou aplicar lógica para escolher a correta
+        return mensalidades.get(0);
     }
 
 
