@@ -65,7 +65,7 @@ public class MonthlyService {
         MonthlyTable mensalidade = new MonthlyTable();
         mensalidade.setCrianca(crianca);
         mensalidade.setValor(dto.valor());
-        mensalidade.setDataVencimento(dto.vencimento());
+        mensalidade.setDataVencimento(proximoMes);
         mensalidade.setEstaPaga(false);
         mensalidade.setDataPagamento(null);
 

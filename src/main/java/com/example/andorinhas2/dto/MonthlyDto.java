@@ -9,7 +9,6 @@ public record MonthlyDto(
         @NotNull
         Long crianca_id,
         @NotNull
-        Long valor,
-        LocalDate vencimento
+        Long valor
 ) {
 }
