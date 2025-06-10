@@ -57,8 +57,9 @@ public class MonthlyService {
         if (dto.crianca_id() == null) {
             throw new IllegalArgumentException("O ID da criança não pode ser nulo");
         }
-
+        MonthlyTable ultimaMensalidade = monthlyRepository.findTopByCriancaIdOrderByDataVencimentoDesc(dto.crianca_id());
         ChildTable crianca = childRepository.findById(dto.crianca_id()).orElseThrow(() -> new RuntimeException("Criança não encontrada"));
+        LocalDate proximoMes = ultimaMensalidade.getDataVencimento().plusMonths(1);
 
 
         MonthlyTable mensalidade = new MonthlyTable();
