@@ -5,9 +5,7 @@ import com.example.andorinhas2.model.UserTable;
 import com.example.andorinhas2.repository.UserRepository;
 import com.example.andorinhas2.service.UserService;
 import jakarta.validation.Valid;
-import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

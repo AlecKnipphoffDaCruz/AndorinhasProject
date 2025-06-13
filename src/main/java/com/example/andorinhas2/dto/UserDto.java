@@ -9,7 +9,7 @@ public record UserDto(
         Long id,
         @NotNull String nome,
         String email, String senha, Erole role,
-        LocalDateTime dataAdminssao) {
+        LocalDateTime dataAdmissao) {
 
 
 }

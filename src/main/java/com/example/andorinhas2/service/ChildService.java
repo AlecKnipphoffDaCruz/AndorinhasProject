@@ -32,7 +32,7 @@ public class ChildService {
         return childRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Criança não encontrada"));
     }
-    public Long totalCrianças(){
+    public Long totalCriancas(){
         Long total;
          total = childRepository.count();
         return total;
