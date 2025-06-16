@@ -25,7 +25,6 @@ public class RegistrationController {
     private RegistrationService registrationService;
 
 
-
     @PostMapping("/{criancaId}/{tipo}")
     public ResponseEntity<String> registrarEntradaSaida(@PathVariable Long criancaId, @PathVariable ERegistration tipo){
         registrationService.registrarEntradaSaida(criancaId, tipo);
