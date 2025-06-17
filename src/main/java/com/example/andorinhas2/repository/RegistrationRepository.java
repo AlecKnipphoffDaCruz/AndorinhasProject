@@ -15,4 +15,5 @@ public interface RegistrationRepository extends JpaRepository<RegistrationTable,
     List<RegistrationTable> findByTipo(ERegistration tipo);
     Optional<RegistrationTable> findTopByCriancaOrderByDatahoraDesc(ChildTable crianca);
     List<RegistrationTable> findByDatahoraBetweenAndTipo(LocalDateTime inicio, LocalDateTime fim, ERegistration entrada);
+
 }

@@ -3,6 +3,7 @@ package com.example.andorinhas2.service;
 import com.example.andorinhas2.model.ChildTable;
 import com.example.andorinhas2.model.ERegistration;
 import com.example.andorinhas2.model.RegistrationTable;
+import com.example.andorinhas2.model.SemanaModel;
 import com.example.andorinhas2.repository.ChildRepository;
 import com.example.andorinhas2.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +64,32 @@ public class RegistrationService {
 
         return total;
     }
+
+    public SemanaModel presencasSemana() {
+        SemanaModel semana = new SemanaModel();
+
+        for (int i = 0; i < 7; i++) {
+            LocalDate dia = LocalDate.now().minusDays(i);
+            LocalDateTime inicio = dia.atTime(LocalTime.of(6, 0));
+            LocalDateTime fim = dia.atTime(LocalTime.of(20, 0));
+
+            List<RegistrationTable> totalList = registroRepository.findByDatahoraBetweenAndTipo(
+                    inicio, fim, ERegistration.ENTRADA);
+
+            int quantidade = totalList.size();
+
+            switch (i) {
+                case 0 -> semana.setSegunda(quantidade);
+                case 1 -> semana.setTerca(quantidade);
+                case 2 -> semana.setQuarta(quantidade);
+                case 3 -> semana.setQuinta(quantidade);
+                case 4 -> semana.setSexta(quantidade);
+                case 5 -> semana.setSabado(quantidade);
+                case 6 -> semana.setDomingo(quantidade);
+            }
+        }
+
+        return semana;
+    }
+
 }
