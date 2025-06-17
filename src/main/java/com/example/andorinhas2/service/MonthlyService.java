@@ -117,4 +117,13 @@ public class MonthlyService {
             criarMensalidadesAutomaticasParaOMes(crianca.getId());
         }
     }
+    public Long valorGanho30dias(){
+        long valor = 0;
+        List<MonthlyTable> lista = monthlyRepository.findUltimos30DiasPagosNative();
+        for (MonthlyTable c : lista){
+            valor += c.getValor();
+        }
+        return valor;
+    }
+
    }

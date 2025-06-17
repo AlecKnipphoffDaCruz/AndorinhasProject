@@ -26,5 +26,15 @@ public class SpentService {
         List<SpentTable> todasAsDespesas = spentRepository.findAll();
         return todasAsDespesas;
     }
+
+    public Long ValorTodasDespesas (){
+        long valorTotal = 0;
+        List<SpentTable> todasAsDespesas = spentRepository.findByLast30DaysNative();
+        for (SpentTable s : todasAsDespesas ){
+             valorTotal += s.getValor();
+        }
+
+        return valorTotal;
+    }
 }
 

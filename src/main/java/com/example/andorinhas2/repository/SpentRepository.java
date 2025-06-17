@@ -18,4 +18,7 @@ public interface SpentRepository extends JpaRepository<SpentTable, Long> {
             nativeQuery = true
     )
     List<SpentTable> findByMesEAno(@Param("mes") int mes, @Param("ano") int ano);
+
+    @Query(value = "SELECT * FROM despesa s WHERE s.data >= CURRENT_DATE - INTERVAL '30 days'", nativeQuery = true)
+    List<SpentTable> findByLast30DaysNative();
 }
