@@ -15,6 +15,7 @@ public interface MonthlyRepository extends JpaRepository<MonthlyTable, Long> {
     List<MonthlyTable> findByCriancaId(Long criancaId);
 
 
+
     @Query(
             value = "SELECT * FROM mensalidade " +
                     "WHERE EXTRACT(MONTH FROM vencimento) = :mes " +

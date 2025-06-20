@@ -61,6 +61,16 @@ public class MonthlyController {
         return ResponseEntity.ok("Mensalidade da criança marcada como paga");
     }
 
+    @GetMapping("/por/{id}")
+    public ResponseEntity<MonthlyTable> getPorId(@PathVariable Long id){
+       List<MonthlyTable> lista = monthlyRepository.findByCriancaId(id);
+
+       MonthlyTable crianca = lista.get(lista.lastIndexOf(lista));
+
+       return ResponseEntity.ok(crianca);
+    }
+
+
     @PutMapping("/{id}/{valor}")
     public ResponseEntity<String> atualizarValorMensalidade(@PathVariable Long id, @PathVariable Long valor) {
         monthlyService.atualizarValorMensalidade(id, valor);
