@@ -2,12 +2,10 @@ package com.example.andorinhas2.security;
 
 import com.example.andorinhas2.repository.UserRepository;
 import com.example.andorinhas2.service.TokenService;
-import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.antlr.v4.runtime.Token;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -18,8 +16,8 @@ import java.io.IOException;
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
-    private TokenService tokenService;
-    private UserRepository userRepository;
+    private final TokenService tokenService;
+    private final UserRepository userRepository;
 
     public SecurityFilter(TokenService tokenService, UserRepository userRepository){
         this.tokenService = tokenService;
@@ -27,25 +25,38 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var tokenJWT = recuperarToken(request);
-        if (tokenJWT != null) {
-            var subject = tokenService.getSubject(tokenJWT);
-            var user = userRepository.findByEmail(subject);
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        try {
+            String tokenJWT = recuperarToken(request);
 
-            var authentication = new UsernamePasswordAuthenticationToken(user,null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            if (tokenJWT != null && !tokenJWT.isBlank()) {
+                String subject = tokenService.getSubject(tokenJWT);
+                var user = userRepository.findByEmail(subject);
+
+                if (user != null) {
+                    var authentication = new UsernamePasswordAuthenticationToken(
+                            user, null, user.getAuthorities()
+                    );
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+            }
+        } catch (RuntimeException e) {
+
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Token inválido ou expirado.");
+            return;
         }
 
         filterChain.doFilter(request, response);
     }
 
     private String recuperarToken(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            return authorizationHeader.replace("Bearer", "").trim();
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7).trim();
         }
         return null;
     }
-
 }

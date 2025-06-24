@@ -65,7 +65,7 @@ public class MonthlyController {
     public ResponseEntity<MonthlyTable> getPorId(@PathVariable Long id){
        List<MonthlyTable> lista = monthlyRepository.findByCriancaId(id);
 
-       MonthlyTable crianca = lista.get(lista.lastIndexOf(lista));
+        MonthlyTable crianca = lista.get(lista.size() - 1);
 
        return ResponseEntity.ok(crianca);
     }
