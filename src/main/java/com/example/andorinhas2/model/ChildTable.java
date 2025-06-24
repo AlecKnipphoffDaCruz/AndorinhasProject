@@ -41,8 +41,10 @@ public class ChildTable {
     @Column(name = "telefone_pai")
     @NotNull
     private String telefonePai;
-    @Transient
+    @Enumerated(EnumType.STRING)
+    @Column(name = "eregistration")
     private ERegistration eRegistration;
+
 
 
     public ChildTable(@Valid ChildDto childDto) {
