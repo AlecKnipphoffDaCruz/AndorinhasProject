@@ -3,6 +3,7 @@ package com.example.andorinhas2.service;
 import com.example.andorinhas2.dto.ChildDto;
 import com.example.andorinhas2.dto.UserDto;
 import com.example.andorinhas2.model.ChildTable;
+import com.example.andorinhas2.model.ERegistration;
 import com.example.andorinhas2.model.UserTable;
 import com.example.andorinhas2.repository.ChildRepository;
 import com.example.andorinhas2.repository.UserRepository;
@@ -24,6 +25,15 @@ public class ChildService {
     }
     @Transactional
     public void cadastrar(ChildDto childDto) {
+        ChildTable crianca = new ChildTable();
+        crianca.setNome(childDto.nome());
+        crianca.setId(childDto.id());
+        crianca.setTurma(null);
+        crianca.setNomePai(crianca.getNomePai());
+        crianca.setDataNascimento(childDto.dataNascimento());
+        crianca.setAvatarId(childDto.avatarId());
+        crianca.setTelefonePai(crianca.getTelefonePai());
+        crianca.setERegistration(ERegistration.SAIDA);
         childRepository.save(new ChildTable(childDto));
     }
 

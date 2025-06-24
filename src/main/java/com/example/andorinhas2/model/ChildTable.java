@@ -41,6 +41,9 @@ public class ChildTable {
     @Column(name = "telefone_pai")
     @NotNull
     private String telefonePai;
+    @Transient
+    private ERegistration eRegistration;
+
 
     public ChildTable(@Valid ChildDto childDto) {
         this.id = childDto.id();

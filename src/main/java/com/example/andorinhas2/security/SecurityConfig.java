@@ -38,13 +38,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/user").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/user").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/crianca/**").hasAnyRole("MONITORA","ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/money/**").hasAnyRole("MONITORA", "ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/mensalidade/por/**").hasAnyRole("MONITORA", "ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/registro/historico/**").hasAnyRole("MONITORA", "ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/user").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/user").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user").hasAuthority("ROLE_ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/crianca/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/money/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/mensalidade/por/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/registro/historico/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
 
                         .anyRequest().authenticated()
                 )

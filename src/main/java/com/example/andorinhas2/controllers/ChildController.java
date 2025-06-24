@@ -41,6 +41,7 @@ public class ChildController {
 
     @GetMapping
     public List<ChildTable> listarTodasCriancas() {
+
         return childService.listarTodos();
     }
 

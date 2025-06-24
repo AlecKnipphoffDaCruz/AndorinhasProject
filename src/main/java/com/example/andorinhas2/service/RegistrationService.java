@@ -27,7 +27,8 @@ public class RegistrationService {
 
     public RegistrationTable registrarEntradaSaida(Long criancaId, ERegistration tipo) {
         ChildTable crianca = childRepository.findById(criancaId).orElseThrow(() -> new RuntimeException("Criança não encontrada"));
-
+        crianca.setERegistration(tipo);
+        childRepository.save(crianca);
         RegistrationTable registro = new RegistrationTable(crianca, tipo, LocalDateTime.now());
         return registroRepository.save(registro);
     }
