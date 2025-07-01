@@ -44,4 +44,5 @@ public interface MonthlyRepository extends JpaRepository<MonthlyTable, Long> {
     @Query(value = "SELECT * FROM mensalidade WHERE data_pagamento >= CURRENT_DATE - INTERVAL '30 days' AND paga = true", nativeQuery = true)
     List<MonthlyTable> findUltimos30DiasPagosNative();
 
+    MonthlyTable findFirstByCriancaId(Long criancaId);
 }

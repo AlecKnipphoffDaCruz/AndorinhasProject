@@ -82,13 +82,19 @@ public class MonthlyService {
 
         return monthlyRepository.save(mensalidade);
     }
-    public MonthlyTable atualizarValorMensalidade (Long criancaId, Long valorNovo) {
-        MonthlyTable mensalidade = monthlyRepository.findFirstByCriancaIdAndEstaPagaFalseOrderByDataVencimentoAsc(criancaId)
-                .orElseThrow(() -> new RuntimeException("Nenhuma criança encontrada"));
+    public MonthlyTable atualizarValorMensalidade(Long criancaId, Long valorNovo) {
+        MonthlyTable crianca = monthlyRepository.findFirstByCriancaId(criancaId);
 
-        mensalidade.setValor(valorNovo);
-        return monthlyRepository.save(mensalidade);
+        if (crianca == null) {
+            throw new RuntimeException("Nenhuma criança encontrada para o id: " + criancaId);
+        }
+
+        crianca.setValor(valorNovo);
+        crianca.setEstaPaga(false);
+        crianca.setDataPagamento(null);
+        return monthlyRepository.save(crianca);
     }
+
     public void criarMensalidadesAutomaticasParaOMes(Long criancaId) {
         MonthlyTable ultimaMensalidade = monthlyRepository.findTopByCriancaIdOrderByDataVencimentoDesc(criancaId);
 
