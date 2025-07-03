@@ -45,4 +45,15 @@ public class UsersController {
         userRepository.deleteByUsuarioId(usuarioId);
         return ResponseEntity.ok("Monitora removida com suceso!");
     }
+
+    @PutMapping("/config")
+    public ResponseEntity<String> atualizarUser(@RequestBody UserDto userDto){
+        UserTable user =  userRepository.findByUsuarioId(userDto.id());
+        user.setUserImg(userDto.userImg());
+        user.setNome(userDto.nome());
+        user.setEmail(userDto.email());
+        user.setSenha(userDto.senha());
+
+        return ResponseEntity.ok("Atulização feita com sucesso!");
+    }
 }

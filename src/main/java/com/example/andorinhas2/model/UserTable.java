@@ -36,6 +36,8 @@ public class UserTable implements UserDetails{
     @NotNull
     @NotBlank
     private String senha;
+    @Column(name = "user_img")
+    private String userImg;
 
     @Enumerated(EnumType.STRING)
     private Erole role;
@@ -46,7 +48,7 @@ public class UserTable implements UserDetails{
         this.nome = userDto.nome();
         this.role = userDto.role();
         this.senha = userDto.senha();
-
+        this.userImg = userDto.userImg();
     }
     @Column(name = "data_admissao")
     @NotNull
