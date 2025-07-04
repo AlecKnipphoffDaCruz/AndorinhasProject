@@ -25,7 +25,7 @@ public class TokenService {
                     .withSubject(userTable.getEmail())
                     .withClaim("name",userTable.getNome())
                     .withClaim("roles", userTable.getRole().toString())
-                    .withClaim("userImg", userTable.getUserImg())
+                    .withClaim("img", userTable.getUserImg())
                     .withIssuedAt(now)
                     .withExpiresAt(expiresAt)
                     .sign(algorithm);

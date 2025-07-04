@@ -42,12 +42,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/user").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET, "/user").hasAuthority("ROLE_ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/crianca/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/money/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/mensalidade/por/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/registro/historico/**").hasAnyAuthority("ROLE_MONITORA", "ROLE_ADMIN")
 
-                        .anyRequest().authenticated()
+
+                        .anyRequest().hasAnyAuthority("ROLE_ADMIN", "ROLE_MONITORA")
+
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
