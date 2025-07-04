@@ -36,7 +36,7 @@ public class UserTable implements UserDetails{
     @NotNull
     @NotBlank
     private String senha;
-    @Column(name = "user_img")
+    @Column(name = "user_img", columnDefinition = "TEXT")
     private String userImg;
 
     @Enumerated(EnumType.STRING)

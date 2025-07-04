@@ -1,5 +1,4 @@
 package com.example.andorinhas2.security;
-
 import com.example.andorinhas2.repository.UserRepository;
 import com.example.andorinhas2.service.TokenService;
 import jakarta.servlet.FilterChain;
@@ -19,7 +18,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private final TokenService tokenService;
     private final UserRepository userRepository;
 
-    public SecurityFilter(TokenService tokenService, UserRepository userRepository){
+    public SecurityFilter(TokenService tokenService, UserRepository userRepository) {
         this.tokenService = tokenService;
         this.userRepository = userRepository;
     }
@@ -43,7 +42,6 @@ public class SecurityFilter extends OncePerRequestFilter {
                 }
             }
         } catch (RuntimeException e) {
-
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Token inválido ou expirado.");
             return;
@@ -54,9 +52,16 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private String recuperarToken(HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            return authorizationHeader.substring(7).trim();
+
+        if (authorizationHeader == null || authorizationHeader.isBlank()) {
+            return null;
         }
-        return null;
+
+        if (!authorizationHeader.startsWith("Bearer ")) {
+            return null;
+        }
+
+        String token = authorizationHeader.substring(7).trim();
+        return token.isEmpty() ? null : token;
     }
 }
