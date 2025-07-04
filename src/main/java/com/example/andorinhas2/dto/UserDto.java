@@ -10,6 +10,5 @@ public record UserDto(
         @NotNull String nome,
         String email, String senha, Erole role,
         LocalDateTime dataAdmissao, String userImg) {
-
-
 }
+

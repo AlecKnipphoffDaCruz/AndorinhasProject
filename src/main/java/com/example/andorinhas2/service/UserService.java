@@ -24,6 +24,16 @@ public class UserService {
     }
     @Transactional
     public void cadastrar(UserDto userDto) {
+
+        if (userRepository.existsByEmail(userDto.email())) {
+            throw new RuntimeException("Email já cadastrado");
+        }
+
+        // Opcional: verificar nome duplicado
+        if (userRepository.existsByNome(userDto.nome())) {
+            throw new RuntimeException("Nome já cadastrado");
+        }
+
         UserTable user = new UserTable();
         user.setEmail(userDto.email());
         user.setNome(userDto.nome());
@@ -33,6 +43,7 @@ public class UserService {
         user.setDataAdmissao(LocalDateTime.now());
         userRepository.save(user);
     }
+
     public UserTable monitoraPorId(Long id){
         UserTable monitora = userRepository.findByUsuarioId(id);
         return monitora;
