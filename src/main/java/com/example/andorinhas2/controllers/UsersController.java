@@ -1,11 +1,13 @@
 package com.example.andorinhas2.controllers;
 
 import com.example.andorinhas2.dto.UserDto;
+import com.example.andorinhas2.model.Erole;
 import com.example.andorinhas2.model.UserTable;
 import com.example.andorinhas2.repository.UserRepository;
 import com.example.andorinhas2.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,12 +50,22 @@ public class UsersController {
 
     @PutMapping("/config")
     public ResponseEntity<String> atualizarUser(@RequestBody UserDto userDto){
-        UserTable user =  userRepository.findByUsuarioId(userDto.id());
-        user.setUserImg(userDto.userImg());
-        user.setNome(userDto.nome());
-        user.setEmail(userDto.email());
-        user.setSenha(userDto.senha());
-
+        userService.AtualizarUser(userDto);
         return ResponseEntity.ok("Atulização feita com sucesso!");
     }
+    @PreAuthorize("ROLE_ADMIN")
+    @PutMapping("/roleToAdmin/{usuarioId}")
+    public ResponseEntity<String> atualizarRole(@PathVariable Long usuarioId){
+        UserTable user = userRepository.findByUsuarioId(usuarioId);
+        user.setRole(Erole.ROLE_ADMIN);
+        return ResponseEntity.ok("Atualização feita com sucesso!");
+    }
+    @PreAuthorize("ROLE_ADMIN")
+    @PutMapping("/roleToMonitora/{usuarioId}")
+    public ResponseEntity<String> atualizarRole2(@PathVariable Long usuarioId){
+        UserTable user = userRepository.findByUsuarioId(usuarioId);
+        user.setRole(Erole.ROLE_MONITORA);
+        return ResponseEntity.ok("Atualização feita com sucesso!");
+    }
+
 }
