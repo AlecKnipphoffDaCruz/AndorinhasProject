@@ -56,7 +56,8 @@ public class UserService {
     public void AtualizarUser(UserDtoUpload dto) {
         UserTable user = userRepository.findByUsuarioId(dto.id());
         if (dto.senha() != null && !dto.senha().isBlank()) {
-            user.setSenha(dto.senha());
+            String senha = passwordEncoder.encode(dto.senha());
+            user.setSenha(senha);
         }
         if (dto.nome() != null) {
             user.setNome(dto.nome());
@@ -64,9 +65,7 @@ public class UserService {
         if (dto.email() != null) {
             user.setEmail(dto.email());
         }
-        if (dto.senha() != null) {
-            user.setSenha(dto.senha());
-        }
+
         userRepository.save(user);
     }
 }
