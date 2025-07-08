@@ -8,11 +8,17 @@ import java.time.LocalDateTime;
 
 public record UserDto(
         Long id,
+        @NotNull
+        @NotBlank
         String nome,
+        @NotNull
+        @NotBlank
         String email,
         @NotNull
         @NotBlank
-        String senha, Erole role,
+        String senha,
+        @NotNull
+        Erole role,
         LocalDateTime dataAdmissao, String userImg) {
 }
 

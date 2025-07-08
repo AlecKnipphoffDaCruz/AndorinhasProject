@@ -25,13 +25,9 @@ public class UserTable implements UserDetails{
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
     private Long usuarioId;
-    @NotNull
-    @NotBlank
     @Column (unique = true)
     private String nome;
-    @NotNull
     @Column(unique = true)
-    @NotBlank
     private String email;
     private String senha;
     @Column(name = "user_img", columnDefinition = "TEXT")
