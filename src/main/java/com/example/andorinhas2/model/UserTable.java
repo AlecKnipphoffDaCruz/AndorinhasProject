@@ -45,7 +45,6 @@ public class UserTable implements UserDetails{
         this.userImg = userDto.userImg();
     }
     @Column(name = "data_admissao")
-    @NotNull
     private LocalDateTime dataAdmissao;
 
     @Override

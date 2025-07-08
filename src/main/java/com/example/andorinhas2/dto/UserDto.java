@@ -19,6 +19,7 @@ public record UserDto(
         String senha,
         @NotNull
         Erole role,
+        @NotNull
         LocalDateTime dataAdmissao, String userImg) {
 }
 
