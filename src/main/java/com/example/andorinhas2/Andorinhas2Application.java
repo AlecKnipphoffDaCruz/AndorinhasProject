@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Andorinhas2Application {
+public claAndorinhas2Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Andorinhas2Application.class, args);

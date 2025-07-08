@@ -33,8 +33,6 @@ public class UserTable implements UserDetails{
     @Column(unique = true)
     @NotBlank
     private String email;
-    @NotNull
-    @NotBlank
     private String senha;
     @Column(name = "user_img", columnDefinition = "TEXT")
     private String userImg;

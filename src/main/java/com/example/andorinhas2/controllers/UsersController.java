@@ -1,6 +1,7 @@
 package com.example.andorinhas2.controllers;
 
 import com.example.andorinhas2.dto.UserDto;
+import com.example.andorinhas2.dto.UserDtoUpload;
 import com.example.andorinhas2.model.Erole;
 import com.example.andorinhas2.model.UserTable;
 import com.example.andorinhas2.repository.UserRepository;
@@ -49,10 +50,11 @@ public class UsersController {
     }
 
     @PutMapping("/config")
-    public ResponseEntity<String> atualizarUser(@RequestBody UserDto userDto){
+    public ResponseEntity<String> atualizarUser(@RequestBody UserDtoUpload userDto){
         userService.AtualizarUser(userDto);
         return ResponseEntity.ok("Atulização feita com sucesso!");
     }
+
     @PreAuthorize("ROLE_ADMIN")
     @PutMapping("/roleToAdmin/{usuarioId}")
     public ResponseEntity<String> atualizarRole(@PathVariable Long usuarioId){

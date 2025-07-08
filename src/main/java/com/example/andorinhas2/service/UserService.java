@@ -1,6 +1,7 @@
 package com.example.andorinhas2.service;
 
 import com.example.andorinhas2.dto.UserDto;
+import com.example.andorinhas2.dto.UserDtoUpload;
 import com.example.andorinhas2.model.UserTable;
 import com.example.andorinhas2.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -52,10 +53,10 @@ public class UserService {
 
     }
 
-    public void AtualizarUser(UserDto dto) {
+    public void AtualizarUser(UserDtoUpload dto) {
         UserTable user = userRepository.findByUsuarioId(dto.id());
-        if (dto.userImg() != null) {
-            user.setUserImg(dto.userImg());
+        if (dto.senha() != null && !dto.senha().isBlank()) {
+            user.setSenha(dto.senha());
         }
         if (dto.nome() != null) {
             user.setNome(dto.nome());

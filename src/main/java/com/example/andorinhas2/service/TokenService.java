@@ -23,7 +23,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("API andorinhas")
                     .withSubject(userTable.getEmail())
-                    .withClaim("name",userTable.getNome())
+                    .withClaim("name", userTable.getNome())
                     .withClaim("roles", userTable.getRole().toString())
                     .withClaim("img", userTable.getUserImg())
                     .withClaim("id", userTable.getUsuarioId())
