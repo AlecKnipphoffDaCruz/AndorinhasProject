@@ -60,6 +60,14 @@ public class ChildService {
         childRepository.save(child);
     }
 
+    public void reativar(Long id) {
+
+        ChildTable child = childRepository.getReferenceById(id);
+        child.setAtiva(true);
+
+        childRepository.save(child);
+    }
+
     public void atualizar(ChildDto newData) {
 
         ChildTable oldData = childRepository.getReferenceById(newData.id());

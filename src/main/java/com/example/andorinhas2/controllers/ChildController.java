@@ -10,8 +10,10 @@ import com.example.andorinhas2.service.ChildService;
 import com.example.andorinhas2.service.MonthlyService;
 import com.example.andorinhas2.service.UserService;
 import jakarta.validation.Valid;
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -69,6 +71,12 @@ public class ChildController {
     public ResponseEntity<String> exclusaoLogica(@PathVariable Long id){
         childService.excluir(id);
         return ResponseEntity.ok("Exclusão lógica concluida!");
+    }
+
+    @PutMapping("/reativar/{id}")
+    public ResponseEntity<String> reativacao(@PathVariable Long id){
+        childService.reativar(id);
+        return ResponseEntity.ok("Restauração concluida!");
     }
 
     @PutMapping()
