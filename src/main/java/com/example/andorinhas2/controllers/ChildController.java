@@ -65,11 +65,9 @@ public class ChildController {
         return ResponseEntity.ok(response);
     }
 
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> removeCrianca(@PathVariable Long id) {
-        childRepository.deleteById(id);
-        return ResponseEntity.ok("Criança removida!");
-
+    @PutMapping("/exclusao/{id}")
+    public ResponseEntity<String> exclusaoLogica(@PathVariable Long id){
+        childService.excluir(id);
+        return ResponseEntity.ok("Exclusão lógica concluida!");
     }
 }

@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChildService {
@@ -34,6 +35,7 @@ public class ChildService {
         crianca.setAvatarId(childDto.avatarId());
         crianca.setTelefonePai(crianca.getTelefonePai());
         crianca.setERegistration(ERegistration.SAIDA);
+        crianca.setAtiva(true);
         childRepository.save(new ChildTable(childDto));
     }
 
@@ -46,5 +48,13 @@ public class ChildService {
         Long total;
          total = childRepository.count();
         return total;
+    }
+
+    public void excluir(Long id){
+
+        ChildTable child = childRepository.getReferenceById(id);
+       child.setAtiva(false);
+
+        childRepository.save(child);
     }
 }

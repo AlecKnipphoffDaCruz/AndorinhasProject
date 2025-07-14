@@ -8,8 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface ChildRepository extends JpaRepository<ChildTable, Long> {
-    @Transactional
-    void deleteById(Long id);
-
 
 }

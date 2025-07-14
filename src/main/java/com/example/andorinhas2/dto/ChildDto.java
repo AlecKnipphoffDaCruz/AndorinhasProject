@@ -27,6 +27,7 @@ public record ChildDto(Long id,
                        String nomePai,
                        @NotNull
                        String telefonePai,
-                       ERegistration eRegistration
+                       ERegistration eRegistration,
+                       Boolean ativa
         ) {
 }
