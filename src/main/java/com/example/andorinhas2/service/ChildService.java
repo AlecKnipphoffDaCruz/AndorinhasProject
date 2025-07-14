@@ -17,13 +17,14 @@ import java.util.Optional;
 public class ChildService {
     private ChildRepository childRepository;
 
-    public ChildService(ChildRepository childRepository){
+    public ChildService(ChildRepository childRepository) {
         this.childRepository = childRepository;
     }
 
-    public List<ChildTable> listarTodos(){
+    public List<ChildTable> listarTodos() {
         return childRepository.findAll();
     }
+
     @Transactional
     public void cadastrar(ChildDto childDto) {
         ChildTable crianca = new ChildTable();
@@ -44,17 +45,42 @@ public class ChildService {
         return childRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Criança não encontrada"));
     }
-    public Long totalCriancas(){
+
+    public Long totalCriancas() {
         Long total;
-         total = childRepository.count();
+        total = childRepository.count();
         return total;
     }
 
-    public void excluir(Long id){
+    public void excluir(Long id) {
 
         ChildTable child = childRepository.getReferenceById(id);
-       child.setAtiva(false);
+        child.setAtiva(false);
 
         childRepository.save(child);
+    }
+
+    public void atualizar(ChildDto newData) {
+
+        ChildTable oldData = childRepository.getReferenceById(newData.id());
+
+        if (newData.nome() != oldData.getNome() && newData.nome() != null) {
+            oldData.setNome(newData.nome());
+        }
+        if (newData.turma() != oldData.getTurma() && newData.turma() != null) {
+            oldData.setTurma(newData.turma());
+        }
+        if (newData.avatarId() != oldData.getAvatarId() && newData.avatarId() != null) {
+            oldData.setAvatarId(newData.avatarId());
+        }
+        if (newData.nomePai() != oldData.getNomePai() && newData.nomePai() != null) {
+            oldData.setNomePai(newData.nomePai());
+        }
+        if (newData.telefonePai() != oldData.getTelefonePai() && newData.telefonePai() != null) {
+            oldData.setTelefonePai(newData.telefonePai());
+        }
+        if (newData.dataNascimento() != oldData.getDataNascimento() && newData.dataNascimento() != null) {
+            oldData.setDataNascimento(newData.dataNascimento());
+        }childRepository.save(oldData);
     }
 }

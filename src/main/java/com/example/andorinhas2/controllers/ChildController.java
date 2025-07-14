@@ -70,4 +70,10 @@ public class ChildController {
         childService.excluir(id);
         return ResponseEntity.ok("Exclusão lógica concluida!");
     }
+
+    @PutMapping()
+    public ResponseEntity<String> atualizaçaoDados(@RequestBody ChildDto dto){
+        childService.atualizar(dto);
+        return ResponseEntity.ok("Atualização feita com sucesso");
+    }
 }
