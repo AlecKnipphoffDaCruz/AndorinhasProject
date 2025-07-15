@@ -37,15 +37,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/user").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET, "/user").hasAuthority("ROLE_ADMIN")
-
-
-
                         .anyRequest().hasAnyAuthority("ROLE_ADMIN", "ROLE_MONITORA")
-
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -64,7 +60,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // Frontend
+        config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);

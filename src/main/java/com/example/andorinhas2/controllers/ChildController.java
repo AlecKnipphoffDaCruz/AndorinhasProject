@@ -80,7 +80,7 @@ public class ChildController {
     }
 
     @PutMapping()
-    public ResponseEntity<String> atualizaçaoDados(@RequestBody ChildDto dto){
+    public ResponseEntity<String> atualizacaoDados(@RequestBody ChildDto dto){
         childService.atualizar(dto);
         return ResponseEntity.ok("Atualização feita com sucesso");
     }
