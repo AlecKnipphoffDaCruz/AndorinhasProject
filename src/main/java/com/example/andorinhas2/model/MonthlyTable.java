@@ -40,6 +40,9 @@ public class MonthlyTable {
     @Column(name = "data_pagamento")
     private LocalDate dataPagamento;
 
+    @Column(name = "data-criacao")
+    private LocalDate dataCriacao;
+
     public boolean isPaga() {
         if (getEstaPaga().equals(true)){
             return true;

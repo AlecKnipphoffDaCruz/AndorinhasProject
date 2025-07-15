@@ -68,6 +68,7 @@ public class MonthlyService {
         mensalidade.setDataVencimento(proximoMes);
         mensalidade.setEstaPaga(false);
         mensalidade.setDataPagamento(null);
+        mensalidade.setDataCriacao(LocalDate.now());
 
         return monthlyRepository.save(mensalidade);
     }
@@ -78,7 +79,6 @@ public class MonthlyService {
                 .orElseThrow(() -> new RuntimeException("Nenhuma mensalidade pendente encontrada para esta criança"));
 
         mensalidade.setEstaPaga(true);
-        mensalidade.setDataPagamento(LocalDate.now());
 
         return monthlyRepository.save(mensalidade);
     }
@@ -112,10 +112,11 @@ public class MonthlyService {
         novaMensalidade.setDataVencimento(proximoMes);
         novaMensalidade.setEstaPaga(false);
         novaMensalidade.setDataPagamento(null);
+        novaMensalidade.setDataCriacao(LocalDate.now());
 
         monthlyRepository.save(novaMensalidade);
     }
-    @Scheduled(cron = "0 0 0 1 * ?")  // INDICA QUANDO VAI SER REALIZADA A CRIAÇÃO AUTOMATICA
+    @Scheduled(cron = "0 0 0 1 * ?")
     public void criarMensalidadesParaTodos() {
         List<ChildTable> criancas = childRepository.findAll();
 
