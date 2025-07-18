@@ -30,7 +30,7 @@ public class ChildService {
         ChildTable crianca = new ChildTable();
         crianca.setNome(childDto.nome());
         crianca.setId(childDto.id());
-        crianca.setTurma(null);
+        crianca.setTurma(childDto.turma());
         crianca.setNomePai(childDto.nomePai());
         crianca.setDataNascimento(childDto.dataNascimento());
         crianca.setAvatarId(childDto.avatarId());
