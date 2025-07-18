@@ -91,4 +91,10 @@ public class ChildService {
             oldData.setDataNascimento(newData.dataNascimento());
         }childRepository.save(oldData);
     }
+
+    public List<ChildTable> acharAtivas(boolean isAtiva){
+        List<ChildTable> lista = childRepository.findByAtiva(isAtiva);
+        return lista;
+    }
+
 }

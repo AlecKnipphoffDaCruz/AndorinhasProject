@@ -84,4 +84,17 @@ public class ChildController {
         childService.atualizar(dto);
         return ResponseEntity.ok("Atualização feita com sucesso");
     }
+    @GetMapping("ativas")
+    public List<ChildTable> listaAtivas(){
+        List<ChildTable> lista = childService.acharAtivas(true);
+
+        return lista;
+    }
+    @GetMapping("desativas")
+    public List<ChildTable> listaDesativadas(){
+        List<ChildTable> lista = childService.acharAtivas(false);
+        return lista;
+    }
+
+
 }
