@@ -31,13 +31,13 @@ public class ChildService {
         crianca.setNome(childDto.nome());
         crianca.setId(childDto.id());
         crianca.setTurma(null);
-        crianca.setNomePai(crianca.getNomePai());
+        crianca.setNomePai(childDto.nomePai());
         crianca.setDataNascimento(childDto.dataNascimento());
         crianca.setAvatarId(childDto.avatarId());
-        crianca.setTelefonePai(crianca.getTelefonePai());
+        crianca.setTelefonePai(childDto.telefonePai());
         crianca.setERegistration(ERegistration.SAIDA);
         crianca.setAtiva(true);
-        childRepository.save(new ChildTable(childDto));
+        childRepository.save(crianca);
     }
 
 
