@@ -97,4 +97,11 @@ public class ChildService {
         return lista;
     }
 
+
+    public Long quantidadeAtivas(boolean isAtiva) {
+        List<ChildTable> lista = childRepository.findByAtiva(isAtiva);
+        System.out.println(">>> Buscando por isAtiva = " + isAtiva);
+        lista.forEach(c -> System.out.println(" - " + c.getNome() + " | ativa=" + c.getAtiva()));
+        return (long) lista.size();
+    }
 }

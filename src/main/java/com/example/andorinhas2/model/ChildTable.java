@@ -44,6 +44,7 @@ public class ChildTable {
     @Enumerated(EnumType.STRING)
     @Column(name = "eregistration")
     private ERegistration eRegistration;
+    @Column(nullable = false)
     private Boolean ativa;
 
 

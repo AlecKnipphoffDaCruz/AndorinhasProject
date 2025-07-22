@@ -50,7 +50,6 @@ public class ChildController {
     @GetMapping("total/matriculas")
     public ResponseEntity totalMatriculas (){
         Long total = childService.totalCriancas();
-
         return ResponseEntity.ok(total);
     }
 
@@ -96,5 +95,10 @@ public class ChildController {
         return lista;
     }
 
+    @GetMapping("quantidade/ativas")
+    public ResponseEntity<Long> totalAtivas(){
+        Long lista = childService.quantidadeAtivas(true);
+        return ResponseEntity.ok(lista);
+    }
 
 }
