@@ -9,6 +9,7 @@ import com.example.andorinhas2.service.MonthlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,17 +28,19 @@ public class MonthlyController {
         this.childRepository = childRepository;
     }
 
-
     @GetMapping
-    public List<MonthlyTable> listarMensaliade (@PathVariable(required = false)Long criancaId, @PathVariable(required = false)Integer mes, @PathVariable(required = false)Integer ano){
-        if (criancaId != null) {
-            return monthlyRepository.findByCriancaId(criancaId);
-        } else if (mes != null && ano != null) {
-            return monthlyRepository.findByMesEAno(mes, ano);
-        } else {
-            return monthlyRepository.findAll();
-        }
+    public List<MonthlyTable> listarMensalidadeTodos(){
+        return monthlyRepository.findAll();
     }
+    @GetMapping("/{id}")
+    public List<MonthlyTable> listarMensalidadePorId(@PathVariable Long criancaId){
+        return monthlyRepository.findByCriancaId(criancaId);
+    }
+    @GetMapping("/{mes}/{ano}")
+    public List<MonthlyTable> listarMensalidadePorData(@PathVariable Integer mes, @PathVariable Integer ano){
+        return monthlyRepository.findByMesEAno(mes, ano);
+    }
+
     @GetMapping ("/pendente")
     public ResponseEntity<List<MonthlyTable>> listarPendentes (){
         List<MonthlyTable> pendete =  monthlyService.pendentes();

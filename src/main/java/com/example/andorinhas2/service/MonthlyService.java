@@ -133,4 +133,8 @@ public class MonthlyService {
         return valor;
     }
 
+        public List<MonthlyTable> todasCriadas(Integer mes, Integer ano){
+            return monthlyRepository.findByMesEAno(mes, ano);
+        }
+
    }

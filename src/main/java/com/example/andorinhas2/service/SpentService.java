@@ -36,5 +36,9 @@ public class SpentService {
 
         return valorTotal;
     }
+
+    public List<SpentTable> todasDespesasPorData(Integer mes, Integer ano) {
+        return spentRepository.findByMesEAno(mes, ano);
+    }
 }
 
