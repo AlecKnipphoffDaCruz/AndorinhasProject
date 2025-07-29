@@ -41,7 +41,12 @@ public class UsersController {
         UserTable monitora = userService.monitoraPorId(id);
         return ResponseEntity.ok(monitora);
     }
-
+    @GetMapping
+    public ResponseEntity<String> getImg(@PathVariable Long id){
+        UserTable user = userRepository.findByUsuarioId(id);
+        String img = user.getUserImg();
+        return ResponseEntity.ok(img);
+    }
 
     @DeleteMapping("/{usuarioId}")
     public ResponseEntity<String> removerMonitora(@PathVariable Long usuarioId){

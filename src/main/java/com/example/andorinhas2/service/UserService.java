@@ -62,6 +62,9 @@ public class UserService {
         if (dto.nome() != null) {
             user.setNome(dto.nome());
         }
+        if (dto.userImg() != null && !dto.userImg().isBlank()){
+            user.setUserImg(dto.userImg());
+        }
         if (dto.email() != null) {
             user.setEmail(dto.email());
         }
