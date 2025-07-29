@@ -41,7 +41,7 @@ public class UsersController {
         UserTable monitora = userService.monitoraPorId(id);
         return ResponseEntity.ok(monitora);
     }
-    @GetMapping
+    @GetMapping("img/{id}")
     public ResponseEntity<String> getImg(@PathVariable Long id){
         UserTable user = userRepository.findByUsuarioId(id);
         String img = user.getUserImg();
