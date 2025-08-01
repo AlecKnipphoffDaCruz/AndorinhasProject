@@ -1,6 +1,5 @@
 package com.example.andorinhas2.controllers;
 
-import com.example.andorinhas2.dto.ChildANDMonthlyDto;
 import com.example.andorinhas2.dto.ChildDto;
 import com.example.andorinhas2.model.ChildTable;
 import com.example.andorinhas2.model.MonthlyTable;
