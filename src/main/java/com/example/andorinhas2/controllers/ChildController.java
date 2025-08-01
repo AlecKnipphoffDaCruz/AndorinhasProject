@@ -2,10 +2,8 @@ package com.example.andorinhas2.controllers;
 
 import com.example.andorinhas2.dto.ChildDto;
 import com.example.andorinhas2.model.ChildTable;
-import com.example.andorinhas2.model.MonthlyTable;
 import com.example.andorinhas2.repository.ChildRepository;
 import com.example.andorinhas2.service.ChildService;
-import com.example.andorinhas2.service.MonthlyService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +16,10 @@ import java.util.List;
 public class ChildController {
     private ChildRepository childRepository;
     private ChildService childService;
-    private MonthlyService monthlyService;
 
-    public ChildController(ChildRepository childRepository, ChildService childService, MonthlyService monthlyService) {
+    public ChildController(ChildRepository childRepository, ChildService childService) {
         this.childRepository = childRepository;
         this.childService = childService;
-        this.monthlyService = monthlyService;
     }
 
     @PostMapping
@@ -44,18 +40,6 @@ public class ChildController {
         return ResponseEntity.ok(total);
     }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ChildANDMonthlyDto> listarCrianca(@PathVariable Long id){
-        ChildTable crianca = childService.listarCrianca(id);
-        MonthlyTable mensalidadeCrianca = monthlyService.mensalidadeDaCrianca(id);
-
-
-        ChildANDMonthlyDto response = new ChildANDMonthlyDto(crianca, mensalidadeCrianca);
-
-
-        return ResponseEntity.ok(response);
-    }
 
     @PutMapping("/exclusao/{id}")
     public ResponseEntity<String> exclusaoLogica(@PathVariable Long id){

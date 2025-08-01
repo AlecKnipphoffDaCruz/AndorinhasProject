@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Entity
 @Table(name = "incomes_pagos")
 @Getter
 @Setter

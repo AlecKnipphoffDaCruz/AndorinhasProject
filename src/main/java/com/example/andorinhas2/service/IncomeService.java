@@ -74,5 +74,11 @@ public class IncomeService {
     public List<IncomesPayedTable> findByMonthAndYearOnPayed(int month, int year) {
         return payedRepository.findByMonthAndYear(month, year);
     }
+
+    public Long valorGanho30dias() {
+        LocalDate hoje = LocalDate.now();
+        LocalDate trintaDiasAtras = hoje.minusDays(30);
+        return payedRepository.sumValueByDatePaymentBetween(trintaDiasAtras, hoje);
+    }
 }
 
