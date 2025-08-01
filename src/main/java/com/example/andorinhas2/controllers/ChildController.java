@@ -5,22 +5,14 @@ import com.example.andorinhas2.dto.ChildDto;
 import com.example.andorinhas2.model.ChildTable;
 import com.example.andorinhas2.model.MonthlyTable;
 import com.example.andorinhas2.repository.ChildRepository;
-import com.example.andorinhas2.repository.UserRepository;
 import com.example.andorinhas2.service.ChildService;
 import com.example.andorinhas2.service.MonthlyService;
-import com.example.andorinhas2.service.UserService;
 import jakarta.validation.Valid;
-import org.apache.catalina.connector.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
+
 
 @RestController
 @RequestMapping ("/crianca")

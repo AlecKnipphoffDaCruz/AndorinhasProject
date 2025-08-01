@@ -2,20 +2,17 @@ package com.example.andorinhas2.controllers;
 
 
 import com.example.andorinhas2.model.MonthlyTable;
-import com.example.andorinhas2.model.SpentTable;
 import com.example.andorinhas2.service.MonthlyService;
 import com.example.andorinhas2.service.SpentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpHeaders;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;

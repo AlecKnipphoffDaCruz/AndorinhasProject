@@ -30,10 +30,6 @@ public class MonthlyTable {
     private Long valor;
 
     @NotNull
-    @Column(name = "vencimento")
-    private LocalDate dataVencimento;
-
-    @NotNull
     @Column(name = "paga")
     private Boolean estaPaga;
 

@@ -59,13 +59,11 @@ public class MonthlyService {
         }
         MonthlyTable ultimaMensalidade = monthlyRepository.findTopByCriancaIdOrderByDataVencimentoDesc(dto.crianca_id());
         ChildTable crianca = childRepository.findById(dto.crianca_id()).orElseThrow(() -> new RuntimeException("Criança não encontrada"));
-        LocalDate proximoMes = ultimaMensalidade.getDataVencimento().plusMonths(1);
 
 
         MonthlyTable mensalidade = new MonthlyTable();
         mensalidade.setCrianca(crianca);
         mensalidade.setValor(dto.valor());
-        mensalidade.setDataVencimento(proximoMes);
         mensalidade.setEstaPaga(false);
         mensalidade.setDataPagamento(null);
         mensalidade.setDataCriacao(LocalDate.now());
@@ -104,12 +102,10 @@ public class MonthlyService {
         }
 
 
-        LocalDate proximoMes = ultimaMensalidade.getDataVencimento().plusMonths(1);
 
         MonthlyTable novaMensalidade = new MonthlyTable();
         novaMensalidade.setCrianca(ultimaMensalidade.getCrianca());
         novaMensalidade.setValor(ultimaMensalidade.getValor());
-        novaMensalidade.setDataVencimento(proximoMes);
         novaMensalidade.setEstaPaga(false);
         novaMensalidade.setDataPagamento(null);
         novaMensalidade.setDataCriacao(LocalDate.now());

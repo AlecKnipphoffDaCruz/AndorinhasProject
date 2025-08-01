@@ -33,8 +33,8 @@ public class MonthlyController {
         return monthlyRepository.findAll();
     }
     @GetMapping("/{id}")
-    public List<MonthlyTable> listarMensalidadePorId(@PathVariable Long criancaId){
-        return monthlyRepository.findByCriancaId(criancaId);
+    public List<MonthlyTable> listarMensalidadePorId(@PathVariable Long id){
+        return monthlyRepository.findByCriancaId(id);
     }
     @GetMapping("/{mes}/{ano}")
     public List<MonthlyTable> listarMensalidadePorData(@PathVariable Integer mes, @PathVariable Integer ano){

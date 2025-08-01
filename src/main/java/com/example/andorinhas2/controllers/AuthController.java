@@ -5,7 +5,6 @@ import com.example.andorinhas2.dto.TokenDto;
 import com.example.andorinhas2.model.UserTable;
 import com.example.andorinhas2.service.AuthService;
 import com.example.andorinhas2.service.TokenService;
-import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.Authenticator;
 
 @RequestMapping("/auth/login")
 @RestController
