@@ -80,5 +80,12 @@ public class IncomeService {
         LocalDate trintaDiasAtras = hoje.minusDays(30);
         return payedRepository.sumValueByDatePaymentBetween(trintaDiasAtras, hoje);
     }
+
+    public Long mensalidadesPendentes(){
+        List<IncomeExpModel> lista = expRepository.findAll();
+        Long totalValue =  lista.stream().count()-3;
+        return totalValue;
+    }
+
 }
 
